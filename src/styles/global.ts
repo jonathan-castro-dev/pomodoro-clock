@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     
     ${(props) => {
       return css`
-        background-color: ${props.theme['gray-700']};
+        background-color: ${props.theme['red-800']};
         color: ${props.theme.white};
       `
     }}
