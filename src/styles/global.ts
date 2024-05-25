@@ -7,6 +7,10 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  body {
+    margin-inline: 1rem;
+  }
+
   body, button, textarea, input {
     font-family: 'Roboto', sans-serif;
     
