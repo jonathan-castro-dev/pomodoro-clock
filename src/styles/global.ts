@@ -9,6 +9,12 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     margin-inline: 1rem;
+
+    ${(props) => {
+      return css`
+        background-color: ${props.theme['red-800']};
+      `
+    }}
   }
 
   body, button, textarea, input {
@@ -16,7 +22,6 @@ export const GlobalStyle = createGlobalStyle`
     
     ${(props) => {
       return css`
-        background-color: ${props.theme['red-800']};
         color: ${props.theme.white};
       `
     }}
