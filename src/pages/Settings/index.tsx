@@ -1,9 +1,35 @@
-import { X } from 'lucide-react'
+import { FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { X } from 'lucide-react'
 import * as Slider from '@radix-ui/react-slider'
 import { FormContainer, HeaderContainer } from './styles'
+import { useCycles } from '../../hooks/use-cycles'
+
+interface CycleInput {
+  workTime: number
+  shortBreakTime: number
+  longBreakTime: number
+}
 
 export function Settings() {
+  const { createNewCycle } = useCycles()
+
+  const [workTime, setWorkTime] = useState([25])
+  const [shortBreakTime, setShortBreakTime] = useState([5])
+  const [longBreakTime, setLongBreakTime] = useState([25])
+
+  function handleCreateNewCycle(event: FormEvent) {
+    event.preventDefault()
+
+    const cycleInput: CycleInput = {
+      workTime: workTime[0],
+      shortBreakTime: shortBreakTime[0],
+      longBreakTime: longBreakTime[0],
+    }
+
+    createNewCycle(cycleInput)
+  }
+
   return (
     <>
       <HeaderContainer>
@@ -12,12 +38,13 @@ export function Settings() {
           <X />
         </Link>
       </HeaderContainer>
-      <FormContainer>
+      <FormContainer onSubmit={handleCreateNewCycle}>
         <p>Trabalho</p>
-        <span>25 min</span>
+        <span>{workTime} min</span>
         <Slider.Root
           className="SliderRoot"
-          defaultValue={[25]}
+          value={workTime}
+          onValueChange={(value) => setWorkTime(value)}
           min={10}
           max={60}
           step={5}
@@ -29,10 +56,11 @@ export function Settings() {
         </Slider.Root>
 
         <p>Pequena pausa</p>
-        <span>5 min</span>
+        <span>{shortBreakTime} min</span>
         <Slider.Root
           className="SliderRoot"
-          defaultValue={[5]}
+          value={shortBreakTime}
+          onValueChange={(value) => setShortBreakTime(value)}
           min={5}
           max={15}
           step={5}
@@ -44,10 +72,11 @@ export function Settings() {
         </Slider.Root>
 
         <p>Longa pausa</p>
-        <span>25 min</span>
+        <span>{longBreakTime} min</span>
         <Slider.Root
           className="SliderRoot"
-          defaultValue={[25]}
+          value={longBreakTime}
+          onValueChange={(value) => setLongBreakTime(value)}
           min={5}
           max={60}
           step={5}
