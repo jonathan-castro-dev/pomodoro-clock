@@ -106,6 +106,11 @@ export const ToolsContainer = styled.div`
         `
       }}
     }
+
+    &:disabled {
+      background-color: ${(props) => props.theme['red-800']};
+      cursor: not-allowed;
+    }
   }
 
   a {
@@ -127,6 +132,11 @@ export const ToolsContainer = styled.div`
           background-color: ${props.theme['red-800']};
         `
       }}
+    }
+
+    &.isDisabled {
+      background-color: ${(props) => props.theme['red-800']};
+      cursor: not-allowed;
     }
   }
 `

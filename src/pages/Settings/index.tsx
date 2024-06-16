@@ -45,9 +45,9 @@ export function Settings() {
           className="SliderRoot"
           value={workTime}
           onValueChange={(value) => setWorkTime(value)}
-          min={10}
+          min={1}
           max={60}
-          step={5}
+          step={1}
         >
           <Slider.Track className="SliderTrack">
             <Slider.Range className="SliderRange" />
