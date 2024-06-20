@@ -15,10 +15,13 @@ type CycleInput = Omit<Cycle, 'id' | 'name' | 'createdAt'>
 
 interface CyclesContextData {
   cycles: Cycle[]
+  activeCycle: Cycle | undefined
   activeCycleId: string | null
+  secondsAmountPassed: number
   createNewCycle(cycleInput: CycleInput): void
-  stopCycle(): void
-  finishedCycle(): void
+  interruptCycle(): void
+  markCycleAsFinished(): void
+  CountSecondsAmountPassed(seconds: number): void
 }
 
 const CyclesContext = createContext<CyclesContextData>({} as CyclesContextData)
@@ -30,6 +33,9 @@ interface CyclesProviderProps {
 export function CyclesProvider({ children }: CyclesProviderProps) {
   const [cycles, setCycles] = useState<Cycle[]>([])
   const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+  const [secondsAmountPassed, setSecondsAmountPassed] = useState(0)
+
+  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
 
   function createNewCycle(cycleInput: CycleInput) {
     const id = String(new Date().getTime())
@@ -48,11 +54,22 @@ export function CyclesProvider({ children }: CyclesProviderProps) {
     setActiveCycleId(id)
   }
 
-  function stopCycle() {
+  function interruptCycle() {
+    setCycles((state) =>
+      state.map((cycle) => {
+        if (cycle.id === activeCycleId) {
+          return { ...cycle, interruptDate: new Date() }
+        } else {
+          return cycle
+        }
+      }),
+    )
+
+    setSecondsAmountPassed(0)
     setActiveCycleId(null)
   }
 
-  function finishedCycle() {
+  function markCycleAsFinished() {
     setCycles((state) =>
       state.map((cycle) => {
         if (cycle.id === activeCycleId) {
@@ -63,17 +80,25 @@ export function CyclesProvider({ children }: CyclesProviderProps) {
       }),
     )
 
+    setSecondsAmountPassed(0)
     setActiveCycleId(null)
+  }
+
+  function CountSecondsAmountPassed(seconds: number) {
+    setSecondsAmountPassed(seconds)
   }
 
   return (
     <CyclesContext.Provider
       value={{
         cycles,
+        activeCycle,
         activeCycleId,
+        secondsAmountPassed,
         createNewCycle,
-        stopCycle,
-        finishedCycle,
+        interruptCycle,
+        markCycleAsFinished,
+        CountSecondsAmountPassed,
       }}
     >
       {children}
@@ -81,6 +106,7 @@ export function CyclesProvider({ children }: CyclesProviderProps) {
   )
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useCycles() {
   const context = useContext(CyclesContext)
 

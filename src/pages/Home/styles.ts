@@ -34,39 +34,6 @@ export const MainContainer = styled.main`
   align-items: center;
   margin-top: 2.5rem;
 `
-export const ClockContainer = styled.div`
-  border-radius: 100%;
-  outline-offset: 0.5rem;
-  padding: 5rem 1.2rem;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 5rem;
-
-  ${(props) => {
-    return css`
-      border: 4px solid ${props.theme.white};
-      outline: 4px solid ${props.theme['red-500']};
-    `
-  }}
-`
-
-export const PomodoroStepContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-  margin-top: 2rem;
-
-  & > div {
-    width: 0.8rem;
-    height: 0.8rem;
-    border-radius: 100%;
-
-    ${(props) => {
-      return css`
-        background-color: ${props.theme.white};
-      `
-    }}
-  }
-`
 
 export const ToolsContainer = styled.div`
   display: flex;
