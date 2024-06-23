@@ -1,17 +1,20 @@
-import { useEffect } from 'react'
-import { differenceInSeconds } from 'date-fns'
+import { useEffect, useState } from 'react'
 import { useCycles } from '../../hooks/use-cycles'
-import { PomodoroClockContainer } from './styles'
+import { Digit, PomodoroClockContainer } from './styles'
 
 export function PomodoroClock() {
   const {
     activeCycle,
     markCycleAsFinished,
     secondsAmountPassed,
-    CountSecondsAmountPassed,
+    countSecondsAmountPassed,
+    restartSecondsAmountPassed,
   } = useCycles()
 
-  const totalSeconds = activeCycle ? activeCycle?.workTime * 60 : 0
+  const [totalSeconds, setTotalSeconds] = useState(
+    activeCycle ? activeCycle?.workTime * 60 : 0,
+  )
+  const [pomodoroTimesAmountPassed, setPomodoroTimesAmountPassed] = useState(1)
 
   const currentSeconds = activeCycle ? totalSeconds - secondsAmountPassed : 0
 
@@ -23,19 +26,32 @@ export function PomodoroClock() {
 
   useEffect(() => {
     let interval: number
+    const pomodoroTimesArray = activeCycle
+      ? [
+          activeCycle?.workTime * 60,
+          activeCycle?.shortBreakTime * 60,
+          activeCycle?.workTime * 60,
+          activeCycle?.shortBreakTime * 60,
+          activeCycle?.workTime * 60,
+          activeCycle?.longBreakTime * 60,
+        ]
+      : [0]
 
     if (activeCycle) {
       interval = setInterval(() => {
-        const differenceSeconds = differenceInSeconds(
-          new Date(),
-          activeCycle.createdAt,
-        )
-
-        if (differenceSeconds >= totalSeconds) {
-          markCycleAsFinished()
+        if (secondsAmountPassed >= totalSeconds) {
+          setPomodoroTimesAmountPassed((state) => state + 1)
+          restartSecondsAmountPassed()
           clearInterval(interval)
+
+          if (pomodoroTimesAmountPassed === pomodoroTimesArray.length) {
+            markCycleAsFinished()
+            setPomodoroTimesAmountPassed(1)
+          } else {
+            setTotalSeconds(pomodoroTimesArray[pomodoroTimesAmountPassed])
+          }
         } else {
-          CountSecondsAmountPassed(differenceSeconds)
+          countSecondsAmountPassed()
         }
       }, 1000)
     }
@@ -43,7 +59,15 @@ export function PomodoroClock() {
     return () => {
       clearInterval(interval)
     }
-  }, [activeCycle, totalSeconds, markCycleAsFinished, CountSecondsAmountPassed])
+  }, [
+    activeCycle,
+    totalSeconds,
+    markCycleAsFinished,
+    countSecondsAmountPassed,
+    secondsAmountPassed,
+    pomodoroTimesAmountPassed,
+    restartSecondsAmountPassed,
+  ])
 
   useEffect(() => {
     if (activeCycle) {
@@ -55,11 +79,21 @@ export function PomodoroClock() {
 
   return (
     <PomodoroClockContainer>
-      <span>{minutes[0]}</span>
-      <span>{minutes[1]}</span>
-      <span>:</span>
-      <span>{seconds[0]}</span>
-      <span>{seconds[1]}</span>
+      <Digit digitColor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
+        {minutes[0]}
+      </Digit>
+      <Digit digitColor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
+        {minutes[1]}
+      </Digit>
+      <Digit digitColor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
+        :
+      </Digit>
+      <Digit digitColor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
+        {seconds[0]}
+      </Digit>
+      <Digit digitColor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
+        {seconds[1]}
+      </Digit>
     </PomodoroClockContainer>
   )
 }

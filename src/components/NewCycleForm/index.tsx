@@ -37,9 +37,9 @@ export function NewCycleForm() {
         className="SliderRoot"
         value={workTime}
         onValueChange={(value) => setWorkTime(value)}
-        min={1}
+        min={10}
         max={60}
-        step={1}
+        step={5}
       >
         <Slider.Track className="SliderTrack">
           <Slider.Range className="SliderRange" />
@@ -54,7 +54,7 @@ export function NewCycleForm() {
         value={shortBreakTime}
         onValueChange={(value) => setShortBreakTime(value)}
         min={5}
-        max={15}
+        max={20}
         step={5}
       >
         <Slider.Track className="SliderTrack">
@@ -69,8 +69,8 @@ export function NewCycleForm() {
         className="SliderRoot"
         value={longBreakTime}
         onValueChange={(value) => setLongBreakTime(value)}
-        min={5}
-        max={60}
+        min={15}
+        max={40}
         step={5}
       >
         <Slider.Track className="SliderTrack">

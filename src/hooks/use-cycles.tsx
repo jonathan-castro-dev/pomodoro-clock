@@ -21,7 +21,8 @@ interface CyclesContextData {
   createNewCycle(cycleInput: CycleInput): void
   interruptCycle(): void
   markCycleAsFinished(): void
-  CountSecondsAmountPassed(seconds: number): void
+  countSecondsAmountPassed(): void
+  restartSecondsAmountPassed(): void
 }
 
 const CyclesContext = createContext<CyclesContextData>({} as CyclesContextData)
@@ -80,12 +81,15 @@ export function CyclesProvider({ children }: CyclesProviderProps) {
       }),
     )
 
-    setSecondsAmountPassed(0)
     setActiveCycleId(null)
   }
 
-  function CountSecondsAmountPassed(seconds: number) {
-    setSecondsAmountPassed(seconds)
+  function countSecondsAmountPassed() {
+    setSecondsAmountPassed((state) => state + 1)
+  }
+
+  function restartSecondsAmountPassed() {
+    setSecondsAmountPassed(0)
   }
 
   return (
@@ -98,7 +102,8 @@ export function CyclesProvider({ children }: CyclesProviderProps) {
         createNewCycle,
         interruptCycle,
         markCycleAsFinished,
-        CountSecondsAmountPassed,
+        countSecondsAmountPassed,
+        restartSecondsAmountPassed,
       }}
     >
       {children}
