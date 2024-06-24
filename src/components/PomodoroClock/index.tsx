@@ -79,19 +79,19 @@ export function PomodoroClock() {
 
   return (
     <PomodoroClockContainer>
-      <Digit digitColor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
+      <Digit digitcolor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
         {minutes[0]}
       </Digit>
-      <Digit digitColor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
+      <Digit digitcolor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
         {minutes[1]}
       </Digit>
-      <Digit digitColor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
+      <Digit digitcolor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
         :
       </Digit>
-      <Digit digitColor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
+      <Digit digitcolor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
         {seconds[0]}
       </Digit>
-      <Digit digitColor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
+      <Digit digitcolor={pomodoroTimesAmountPassed % 2 === 0 ? 'red' : 'white'}>
         {seconds[1]}
       </Digit>
     </PomodoroClockContainer>

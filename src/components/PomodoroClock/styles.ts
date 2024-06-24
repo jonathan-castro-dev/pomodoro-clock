@@ -16,9 +16,9 @@ const STATUS_COLORS = {
 } as const
 
 interface DigitProps {
-  digitColor: keyof typeof STATUS_COLORS
+  digitcolor: keyof typeof STATUS_COLORS
 }
 
 export const Digit = styled.span<DigitProps>`
-  color: ${(props) => props.theme[STATUS_COLORS[props.digitColor]]};
+  color: ${(props) => props.theme[STATUS_COLORS[props.digitcolor]]};
 `
