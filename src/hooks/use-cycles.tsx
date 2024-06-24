@@ -1,4 +1,10 @@
-import { ReactNode, createContext, useContext, useState } from 'react'
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 interface Cycle {
   id: string
@@ -31,12 +37,35 @@ interface CyclesProviderProps {
   children: ReactNode
 }
 
+const storedStateJSON = localStorage.getItem(
+  '@pomodoro-clock:cycles-activeCycleId-1.0.0',
+)
+
+const storedStateObject = JSON.parse(String(storedStateJSON))
+
 export function CyclesProvider({ children }: CyclesProviderProps) {
-  const [cycles, setCycles] = useState<Cycle[]>([])
-  const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+  const [cycles, setCycles] = useState<Cycle[]>(() => {
+    const { cycles } = storedStateObject
+
+    return cycles
+  })
+  const [activeCycleId, setActiveCycleId] = useState<string | null>(() => {
+    const { activeCycleId } = storedStateObject
+
+    return activeCycleId
+  })
   const [secondsAmountPassed, setSecondsAmountPassed] = useState(0)
 
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify({ cycles, activeCycleId })
+
+    localStorage.setItem(
+      '@pomodoro-clock:cycles-activeCycleId-1.0.0',
+      stateJSON,
+    )
+  }, [cycles, activeCycleId])
 
   function createNewCycle(cycleInput: CycleInput) {
     const id = String(new Date().getTime())
