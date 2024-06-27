@@ -45,14 +45,18 @@ const storedStateObject = JSON.parse(String(storedStateJSON))
 
 export function CyclesProvider({ children }: CyclesProviderProps) {
   const [cycles, setCycles] = useState<Cycle[]>(() => {
-    const { cycles } = storedStateObject
+    if (storedStateObject) {
+      return storedStateObject.cycles
+    }
 
-    return cycles
+    return []
   })
   const [activeCycleId, setActiveCycleId] = useState<string | null>(() => {
-    const { activeCycleId } = storedStateObject
+    if (storedStateObject) {
+      return storedStateObject.activeCycleId
+    }
 
-    return activeCycleId
+    return null
   })
   const [secondsAmountPassed, setSecondsAmountPassed] = useState(0)
 
