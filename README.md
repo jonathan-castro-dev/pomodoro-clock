@@ -17,6 +17,7 @@ Acesse o projeto clicando [aqui](https://pomodoro-clock-coral-nine.vercel.app/).
 Este projeto foi desenvolvido com as seguintes tecnologias:
 
 - [reactjs](https://react.dev/)
+- [vitejs](https://vitejs.dev/)
 - [typescript](https://www.typescriptlang.org/)
 - [styled-components](https://styled-components.com/)
 - [lucide-react](https://lucide.dev/guide/packages/lucide-react)
