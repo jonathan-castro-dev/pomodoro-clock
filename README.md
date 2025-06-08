@@ -2,17 +2,32 @@
   Pomodoro Clock
 </h1>
 
-![pomodoro clock](https://github.com/johnncaastro/pomodoro-clock/blob/main/src/assets/homepage-pomodoro-clock.png)
+<p align="center">
+  <a href="#tech">Tecnologias</a> • 
+  <a href="#installation">Instalação</a> • 
+  <a href="#starting">Começando</a> •
+</p>
 
-## :page_with_curl: Sobre
+<p align="center">
+  <strong>Este app tem o objetivo de ajudar o usuário a manter o foco em sua atividade, aplicando conceitos de uma técnica conhecida como pomodoro.</strong>
+</p>
 
-O Pomodoro Clock fornece uma técnica para ajudar pessoas que precisam se concentrar em suas atividades para atingir determinados objetivos
+<p align="center">
+  <a href="https://pomodoro-clock-coral-nine.vercel.app/">🚀 Visite este projeto</a>
+</p>
 
-## :computer: Projeto
+<h2>🎨 Layout</h2>
 
-Acesse o projeto clicando [aqui](https://pomodoro-clock-coral-nine.vercel.app/). :+1:
+<p align="center">
+    <img src="https://github.com/jonathan-castro-dev/to.do/blob/main/public/homepage-pomodoro-clock.png" alt="Home page" width="400px" height="195px">
+    <img src="https://github.com/jonathan-castro-dev/to.do/blob/main/public/history-pomodoro-clock.png" alt="History page" width="400px" height="195px">
+</p>
 
-## 🚀 Tecnologias
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+[![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
+<h2 id="tech">💻 Tecnologias</h2>
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
 
@@ -26,28 +41,38 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - [radix-ui](https://www.radix-ui.com/)
 - [eslint](https://eslint.org/)
 
-## 👷 Instalação
+<h2 id="installation">👷 Instalação</h2>
 
-Clone o repositório com o seguinte comando no seu terminal (Você precisa ter o [Node.js](https://nodejs.org/en/) e o [Git](https://git-scm.com/) instalados no seu computador).
+<h3>Pré-requisitos</h3>
 
-```git clone https://github.com/johnncaastro/pomodoro-clock.git```
+Para executar o projeto, é necessário ter as seguintes ferramentas instaladas no seu computador:
 
-Instale as dependências para o funcionamento do projeto
+- [Git](https://git-scm.com/)
+- [Node](https://nodejs.org/en/)
+- [pnpm](https://pnpm.io/pt/installation#usando-npm)
 
-```npm install```
+<h3>Clonando o repositório</h3>
 
-## 🏃 Começando
+Execute o comando abaixo em um terminal para clonar o projeto.
 
-Em seguida insira o comando abaixo para iniciar a aplicação:
+```git clone https://github.com/jonathan-castro-dev/pomodoro-clock.git```
 
-```npm run dev```
+<h3>Instalando as dependências do projeto</h3>
 
-## :memo: Licença
+Ainda no terminal, execute o comando abaixo para instalar as dependências necessárias para o funcionamento do projeto.
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/johnncaastro/pomodoro-clock/blob/main/LICENSE) para mais detalhes.
+```pnpm install```
+
+<h2 id="starting">🏃 Começando</h2>
+
+Em seguida insira o comando abaixo no terminal para iniciar a aplicação:
+
+```pnpm run dev```
+
+<h2>📝 Licença</h2>
+
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/jonathan-castro-dev/pomodoro-clock/blob/main/LICENSE) para mais detalhes.
 
 ---
 
-Feito com ♥ por John Castro :wave: [Entre em contato!](https://www.linkedin.com/in/johnncaastro/)
-
-<p>johncastro.dev</p>
+Feito com ♥ por Jonathan Castro :wave: [Entre em contato!](https://www.linkedin.com/in/jonathan-castro-dev/)
